@@ -149,7 +149,7 @@ curl -s -X POST "$API_URL/process" \
 
 **Windows (PowerShell):**
 ```powershell
-curl -s -X POST "$apiEndpoint/process" -H "Content-Type: application/json" -d '{"data":"hello world"}' -i
+curl.exe -s -X POST "$apiEndpoint/process" -H "Content-Type: application/json" -d '{"data":"hello world"}' -i
 ```
 
 **Respuesta esperada (ambos sistemas):**
@@ -174,7 +174,7 @@ curl -s -X POST "$API_URL/process" \
 
 **Windows (PowerShell):**
 ```powershell
-curl -s -X POST "$apiEndpoint/process" -H "Content-Type: application/json" -d '{"data":"hello world"}' -i
+curl.exe -s -X POST "$apiEndpoint/process" -H "Content-Type: application/json" -d '{"data":"hello world"}' -i
 ```
 
 **Respuesta esperada (ambos sistemas):**
