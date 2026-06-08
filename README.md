@@ -123,14 +123,23 @@ private_subnet_ids = ["subnet-xxx", "subnet-yyy"]
 
 ## Verificación End-to-End
 
+Los comandos se muestran para **Linux/macOS (bash)** y **Windows (PowerShell)**.
+
 ### 1. Configurar variable del endpoint
 
+**Linux/macOS (bash):**
 ```bash
 API_URL=$(terraform output -raw api_endpoint)
 ```
 
+**Windows (PowerShell):**
+```powershell
+$apiEndpoint = terraform output -raw api_endpoint
+```
+
 ### 2. Primer request (debe retornar MISS)
 
+**Linux/macOS (bash):**
 ```bash
 curl -s -X POST "$API_URL/process" \
   -H "Content-Type: application/json" \
@@ -138,8 +147,12 @@ curl -s -X POST "$API_URL/process" \
   -i
 ```
 
-**Respuesta esperada:**
+**Windows (PowerShell):**
+```powershell
+curl -s -X POST "$apiEndpoint/process" -H "Content-Type: application/json" -d '{"data":"hello world"}' -i
+```
 
+**Respuesta esperada (ambos sistemas):**
 ```
 HTTP/2 200
 content-type: application/json
@@ -151,6 +164,7 @@ access-control-allow-origin: *
 
 ### 3. Segundo request idéntico (debe retornar HIT)
 
+**Linux/macOS (bash):**
 ```bash
 curl -s -X POST "$API_URL/process" \
   -H "Content-Type: application/json" \
@@ -158,8 +172,12 @@ curl -s -X POST "$API_URL/process" \
   -i
 ```
 
-**Respuesta esperada:**
+**Windows (PowerShell):**
+```powershell
+curl -s -X POST "$apiEndpoint/process" -H "Content-Type: application/json" -d '{"data":"hello world"}' -i
+```
 
+**Respuesta esperada (ambos sistemas):**
 ```
 HTTP/2 200
 content-type: application/json
@@ -171,16 +189,28 @@ access-control-allow-origin: *
 
 ### 4. Verificar objetos en S3
 
+**Linux/macOS (bash):**
 ```bash
 aws s3 ls s3://$(terraform output -raw s3_bucket_name)/results/ --recursive
+```
+
+**Windows (PowerShell):**
+```powershell
+aws s3 ls "s3://$(terraform output -raw s3_bucket_name)/results/" --recursive
 ```
 
 Debe mostrar un archivo JSON por cada request con cache MISS.
 
 ### 5. Ver logs de Lambda
 
+**Linux/macOS (bash):**
 ```bash
 aws logs tail /aws/lambda/$(terraform output -raw lambda_function_name) --since 5m
+```
+
+**Windows (PowerShell):**
+```powershell
+aws logs tail "/aws/lambda/$(terraform output -raw lambda_function_name)" --since 5m
 ```
 
 ## Decisiones de Diseño
@@ -259,8 +289,14 @@ Confirma con `yes`. Esto eliminará todos los recursos creados.
 
 **Importante:** El bucket S3 debe estar vacío para que `terraform destroy` funcione. Si hay objetos (de las pruebas), elimínalos primero:
 
+**Linux/macOS (bash):**
 ```bash
 aws s3 rm s3://$(terraform output -raw s3_bucket_name) --recursive
+```
+
+**Windows (PowerShell):**
+```powershell
+aws s3 rm "s3://$(terraform output -raw s3_bucket_name)" --recursive
 ```
 
 ## Posibles mejoras (producción)
