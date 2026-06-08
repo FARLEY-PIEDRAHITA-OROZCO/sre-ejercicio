@@ -4,10 +4,16 @@ Comando:
   aws s3 ls "s3://sre-test-results-477389928625/results/" --recursive
 
 Resultado:
-2026-06-08 13:43:32        158 results/2026/06/08/aff23fbc-9f9c-4d5e-803f-0a49244bfdaf.json
+2026-06-08 14:39:10        158 results/2026/06/08/abc534b8-5632-439d-ad06-eefb5505d4bc.json
+2026-06-08 14:59:46        158 results/2026/06/08/baf45834-8d7c-4aef-82b8-f393be61710d.json
+
+Contenido del objeto creado durante el MISS (baf45834...):
+{"input": "{data:hello world}", "output": "90ca8466efb5101bd65bb377f50818288098c5a45062b343cabf2386beb0b99e", "timestamp": "2026-06-08T19:59:45.820190+00:00"}  # pragma: allowlist secret
 
 Interpretación:
   - Se creó un objeto JSON en S3 durante el request con X-Cache: MISS
   - Ruta: results/2026/06/08/{uuid}.json
   - Tamaño: 158 bytes
   - Contiene input, output (SHA256) y timestamp del request procesado
+  - El output y timestamp coinciden exactamente con la respuesta del MISS
+  - El segundo objeto (abc534b8) es de una ejecución anterior

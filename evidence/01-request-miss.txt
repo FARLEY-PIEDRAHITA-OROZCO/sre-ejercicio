@@ -1,18 +1,18 @@
-Request #1 — Cache MISS
-========================
+Request #1 — Cache MISS (primera llamada)
+=========================================
 Comando:
-  curl.exe -s -X POST "$apiEndpoint/process" -H "Content-Type: application/json" -d '{"data":"hello world"}' -i
+  curl.exe -s -X POST "$(terraform output -raw api_endpoint)/process" -H "Content-Type: application/json" -d '{"data":"hello world"}' -i
 
 Respuesta:
 HTTP/1.1 200 OK
-Date: Mon, 08 Jun 2026 18:43:31 GMT
+Date: Mon, 08 Jun 2026 19:59:45 GMT
 Content-Type: application/json
 Content-Length: 158
 Connection: keep-alive
 X-Cache: MISS
-Apigw-Requestid: ep8E4jduIAMEcVg=
+Apigw-Requestid: eqHPqgXoIAMEZPQ=
 
-{"input": "{data:hello world}", "output": "90ca8466efb5101bd65bb377f50818288098c5a45062b343cabf2386beb0b99e", "timestamp": "2026-06-08T18:43:31.443406+00:00"}  # pragma: allowlist secret
+{"input": "{data:hello world}", "output": "90ca8466efb5101bd65bb377f50818288098c5a45062b343cabf2386beb0b99e", "timestamp": "2026-06-08T19:59:45.820190+00:00"}  # pragma: allowlist secret
 
 Interpretación:
   - X-Cache: MISS → No estaba en Redis, se procesó y guardó
