@@ -5,17 +5,19 @@ Comando:
 
 Respuesta:
 HTTP/1.1 200 OK
-Date: Mon, 08 Jun 2026 19:59:56 GMT
+Date: Mon, 08 Jun 2026 20:05:08 GMT
 Content-Type: application/json
 Content-Length: 158
 Connection: keep-alive
 X-Cache: HIT
-Apigw-Requestid: eqHRihs-IAMEPeg=
+Apigw-Requestid: eqICTjbZoAMEPeg=
 
-{"input": "{data:hello world}", "output": "90ca8466efb5101bd65bb377f50818288098c5a45062b343cabf2386beb0b99e", "timestamp": "2026-06-08T19:59:45.820190+00:00"}  # pragma: allowlist secret
+{"input": "{data:hello world}", "output": "90ca8466efb5101bd65bb377f50818288098c5a45062b343cabf2386beb0b99e", "timestamp": "2026-06-08T20:05:08.758794+00:00"}  # pragma: allowlist secret
 
 Interpretación:
   - X-Cache: HIT → Redis devolvió el valor cacheado
   - El output y timestamp son IDÉNTICOS al request anterior
   - No se ejecutó procesamiento ni escritura a S3
   - Demostración de que el caching funciona correctamente
+
+![alt text](image-1.png)
