@@ -1,0 +1,13 @@
+Objeto guardado en S3 (verificación)
+======================================
+Comando:
+  aws s3 ls "s3://sre-test-results-477389928625/results/" --recursive
+
+Resultado:
+2026-06-08 13:43:32        158 results/2026/06/08/aff23fbc-9f9c-4d5e-803f-0a49244bfdaf.json
+
+Interpretación:
+  - Se creó un objeto JSON en S3 durante el request con X-Cache: MISS
+  - Ruta: results/2026/06/08/{uuid}.json
+  - Tamaño: 158 bytes
+  - Contiene input, output (SHA256) y timestamp del request procesado
