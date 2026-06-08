@@ -7,8 +7,7 @@
 # ==============================================================
 
 resource "aws_s3_bucket" "results" {
-  bucket        = "${var.project_name}-results-${data.aws_caller_identity.current.account_id}"
-  force_destroy = true
+  bucket = "${var.project_name}-results-${data.aws_caller_identity.current.account_id}"
   # Incluimos el account_id para garantizar nombre único global en S3
 
   tags = {

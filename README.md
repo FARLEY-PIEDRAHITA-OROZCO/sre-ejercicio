@@ -289,7 +289,17 @@ terraform destroy
 
 Confirma con `yes`. Esto eliminará todos los recursos creados.
 
-El bucket S3 se eliminará automáticamente aunque contenga objetos (`force_destroy = true`).
+**Importante:** El bucket S3 debe estar vacío para que `terraform destroy` funcione. Si hay objetos (de las pruebas), elimínalos primero:
+
+**Linux/macOS (bash):**
+```bash
+aws s3 rm s3://$(terraform output -raw s3_bucket_name) --recursive
+```
+
+**Windows (PowerShell):**
+```powershell
+aws s3 rm "s3://$(terraform output -raw s3_bucket_name)" --recursive
+```
 
 ## Posibles mejoras (producción)
 
