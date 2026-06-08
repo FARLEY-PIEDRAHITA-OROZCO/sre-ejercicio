@@ -24,6 +24,9 @@
 lambda_function.zip
 redis_layer.zip
 
+# Dependencias Python instaladas para Lambda Layer (generadas por null_resource)
+lambda/layer/
+
 # Estado de Terraform (contiene IDs de recursos reales)
 *.tfstate
 *.tfstate.*

@@ -195,7 +195,7 @@ resource "aws_vpc_endpoint" "s3" {
 # pero nadie puede entrar directamente a Lambda.
 resource "aws_security_group" "lambda" {
   name        = "${var.project_name}-sg-lambda"
-  description = "Security Group para Lambda — permite salida a Redis y S3"
+  description = "Security Group para Lambda - permite salida a Redis y S3"
   vpc_id      = aws_vpc.main.id
 
   # Tráfico de SALIDA: Lambda puede conectarse a cualquier destino
@@ -216,7 +216,7 @@ resource "aws_security_group" "lambda" {
 # y SOLO si vienen del Security Group de Lambda.
 resource "aws_security_group" "redis" {
   name        = "${var.project_name}-sg-redis"
-  description = "Security Group para Redis — solo acepta Lambda en puerto 6379"
+  description = "Security Group para Redis - solo acepta Lambda en puerto 6379"
   vpc_id      = aws_vpc.main.id
 
   # Tráfico de ENTRADA: solo Lambda, solo puerto 6379
