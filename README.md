@@ -187,6 +187,8 @@ access-control-allow-origin: *
 {"input": "hello world", "output": "<sha256>", "timestamp": "2026-06-08T..."}
 ```
 
+> **Evidencia:** Los archivos con el output real de ambos requests se encuentran en [`evidence/`](evidence/).
+
 ### 4. Verificar objetos en S3
 
 **Linux/macOS (bash):**
