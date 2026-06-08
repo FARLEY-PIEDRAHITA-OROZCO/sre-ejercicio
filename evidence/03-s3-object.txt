@@ -6,14 +6,15 @@ Comando:
 Resultado:
 2026-06-08 14:39:10        158 results/2026/06/08/abc534b8-5632-439d-ad06-eefb5505d4bc.json
 2026-06-08 14:59:46        158 results/2026/06/08/baf45834-8d7c-4aef-82b8-f393be61710d.json
+2026-06-08 15:02:05        158 results/2026/06/08/3d178a52-d43c-47f9-915b-2fe164a49ceb.json
+2026-06-08 15:05:09        158 results/2026/06/08/a77d8f3f-b35c-47d9-9b4d-d0d5a36b9639.json
 
-Contenido del objeto creado durante el MISS (baf45834...):
-{"input": "{data:hello world}", "output": "90ca8466efb5101bd65bb377f50818288098c5a45062b343cabf2386beb0b99e", "timestamp": "2026-06-08T19:59:45.820190+00:00"}  # pragma: allowlist secret
+Contenido del objeto creado durante el MISS (3d178a52...):
+{"input": "{data:hello world}", "output": "90ca8466efb5101bd65bb377f50818288098c5a45062b343cabf2386beb0b99e", "timestamp": "2026-06-08T20:02:04.238287+00:00"}  # pragma: allowlist secret
 
 Interpretación:
-  - Se creó un objeto JSON en S3 durante el request con X-Cache: MISS
-  - Ruta: results/2026/06/08/{uuid}.json
-  - Tamaño: 158 bytes
-  - Contiene input, output (SHA256) y timestamp del request procesado
-  - El output y timestamp coinciden exactamente con la respuesta del MISS
-  - El segundo objeto (abc534b8) es de una ejecución anterior
+  - El objeto 3d178a52 se creó a las 15:02:05 (local) / 20:02:05 UTC →
+    coincide con el request MISS de las 20:02:04 UTC
+  - Los objetos abc534b8, baf45834 y a77d8f3f son de ejecuciones anteriores
+  - El contenido del JSON (input, output, timestamp) coincide exactamente
+    con la respuesta del request MISS
