@@ -1,0 +1,14 @@
+# ==============================================================
+# TERRAFORM.TFVARS.EXAMPLE
+# ==============================================================
+# Copia este archivo como terraform.tfvars y ajusta los valores.
+#
+#   cp terraform.tfvars.example terraform.tfvars
+#
+# ⚠️  NUNCA subas terraform.tfvars a Git (está en .gitignore).
+# ⚠️  Si agregas valores sensibles (API keys, tokens), úsalos
+#     desde variables de entorno, no desde este archivo.
+# ==============================================================
+
+aws_region   = "us-east-1"
+project_name = "sre-test"

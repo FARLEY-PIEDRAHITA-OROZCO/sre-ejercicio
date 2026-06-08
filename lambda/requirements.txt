@@ -1,0 +1,8 @@
+# ==============================================================
+# Dependencias Python para la función Lambda
+# ==============================================================
+# redis:    cliente Redis para conectar a ElastiCache desde Lambda
+# boto3:    ya incluido en el runtime de Lambda (AWS SDK)
+# hashlib, json, os, uuid, datetime: librerías estándar de Python
+
+redis>=5.0

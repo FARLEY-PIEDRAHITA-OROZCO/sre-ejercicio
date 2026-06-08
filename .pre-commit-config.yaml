@@ -1,0 +1,61 @@
+# ==============================================================
+# PRE-COMMIT HOOKS — Seguridad y calidad de código
+# ==============================================================
+# Para activar los hooks:
+#   pip install pre-commit
+#   pre-commit install
+#
+# Para escanear en busca de secrets ya commitheados:
+#   detect-secrets scan . > .secrets.baseline
+#
+# Referencias:
+#   https://pre-commit.com/
+#   https://github.com/Yelp/detect-secrets
+# ==============================================================
+
+repos:
+  # -----------------------------------------------------------
+  # 🛡️  DETECT-SECRETS — Evita commitear credenciales
+  # -----------------------------------------------------------
+  - repo: https://github.com/Yelp/detect-secrets
+    rev: v1.5.0
+    hooks:
+      - id: detect-secrets
+        args: ["--baseline", ".secrets.baseline"]
+        # Excluye archivos que no deberían escanearse
+        exclude: |
+          (?x)^(
+            \.pre-commit-config\.yaml |
+            \.secrets\.baseline |
+            README\.md
+          )$
+
+  # -----------------------------------------------------------
+  # Hooks generales de la comunidad pre-commit
+  # -----------------------------------------------------------
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      # Elimina espacios en blanco al final de las líneas
+      - id: trailing-whitespace
+        exclude: \.md$
+
+      # Asegura que todos los archivos terminen con newline
+      - id: end-of-file-fixer
+
+      # Valida que los archivos YAML sean sintácticamente correctos
+      - id: check-yaml
+        args: [--allow-multiple-documents]
+
+      # Valida que los archivos JSON sean sintácticamente correctos
+      - id: check-json
+
+      # Detecta conflictos de merge olvidados (<<<<<<<, =======, >>>>>>>)
+      - id: check-merge-conflict
+
+      # Previene commitear archivos mayores a 10MB
+      - id: check-added-large-files
+        args: ["--maxkb=10240"]
+
+      # Detecta llaves privadas (SSH, RSA, etc.)
+      - id: detect-private-key

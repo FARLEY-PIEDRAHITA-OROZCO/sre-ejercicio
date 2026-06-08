@@ -1,0 +1,102 @@
+# ==============================================================
+# .gitignore — Seguridad + limpieza del repositorio
+# ==============================================================
+# Este archivo evita que se suban a Git:
+#   1. Artefactos de build y caché de Terraform
+#   2. Archivos con credenciales o valores sensibles
+#   3. Archivos temporales del sistema operativo y editor
+#   4. Entornos virtuales de Python
+
+# ==============================================================
+# TERRAFORM
+# ==============================================================
+
+# Directorio de providers descargados por terraform init
+.terraform/
+
+# Lockfile generado por terraform init (contiene hashes de providers)
+# Se versiona SOLO si se quiere verificar integridad en CI.
+# Para este proyecto NO se versiona para evitar falsos positivos
+# al cambiar de plataforma (Windows ↔ Linux).
+.terraform.lock.hcl
+
+# Archivos zip generados por archive_file y null_resource
+lambda_function.zip
+redis_layer.zip
+
+# Estado de Terraform (contiene IDs de recursos reales)
+*.tfstate
+*.tfstate.*
+
+# Plan files (binarios)
+*.tfplan
+
+# ==============================================================
+# CREDENCIALES Y CONFIGURACIÓN SENSIBLE
+# ==============================================================
+
+# Valores reales de variables (pueden contener secrets en el futuro)
+terraform.tfvars
+terraform.tfvars.json
+
+# Archivos de override (usados para valores temporales)
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# CLI config
+.terraformrc
+terraform.rc
+
+# ==============================================================
+# PYTHON
+# ==============================================================
+
+# Virtual environment
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+dist/
+build/
+*.egg
+.venv/
+venv/
+env/
+
+# ==============================================================
+# SISTEMA OPERATIVO — Windows
+# ==============================================================
+
+# Thumbnails y metadatos
+Thumbs.db
+Desktop.ini
+
+# ==============================================================
+# EDITOR / IDE
+# ==============================================================
+
+# VS Code (settings locales y carpetas de proyecto)
+.vscode/settings.json
+.vscode/launch.json
+
+# JetBrains IDEs
+.idea/
+*.iml
+*.iws
+
+# Vim
+*.swp
+*.swo
+*~
+
+# ==============================================================
+# PRE-COMMIT (caché local)
+# ==============================================================
+.pre-commit-config.local.yaml
+
+# ==============================================================
+# ACTIVIDAD ORIGINAL (documentos confidenciales)
+# ==============================================================
+activity/
