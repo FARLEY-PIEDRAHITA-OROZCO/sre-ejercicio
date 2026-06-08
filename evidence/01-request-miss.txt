@@ -1,0 +1,22 @@
+Request #1 — Cache MISS
+========================
+Comando:
+  curl.exe -s -X POST "$apiEndpoint/process" -H "Content-Type: application/json" -d '{"data":"hello world"}' -i
+
+Respuesta:
+HTTP/1.1 200 OK
+Date: Mon, 08 Jun 2026 18:43:31 GMT
+Content-Type: application/json
+Content-Length: 158
+Connection: keep-alive
+X-Cache: MISS
+Apigw-Requestid: ep8E4jduIAMEcVg=
+
+{"input": "{data:hello world}", "output": "90ca8466efb5101bd65bb377f50818288098c5a45062b343cabf2386beb0b99e", "timestamp": "2026-06-08T18:43:31.443406+00:00"}  # pragma: allowlist secret
+
+Interpretación:
+  - X-Cache: MISS → No estaba en Redis, se procesó y guardó
+  - Se ejecutó SHA256 del body
+  - Se guardó en S3: results/2026/06/08/{uuid}.json
+  - Se escribió en Redis con TTL 60s
+  - Se retornó el resultado
